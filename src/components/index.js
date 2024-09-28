@@ -6,7 +6,8 @@ import container from "./container/container"
 import logooutbtn from "./Header/logooutbtn"
 import Login from "./login";
 import button from "../components/button"
-import Select from "./select";
+import Select from "../components/select";
+import Input from "../components/input"
 
 
 export {
@@ -20,6 +21,7 @@ export {
     button,
     Login,
     Select,
+
     
 
 
