@@ -3,7 +3,8 @@ import "./App.css";
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/Auth";
 import { login, logout } from "./store/store";
-import { Header, Footer } from "./components";
+import { Footer } from "./components";
+import Header from "./components/Header/header";
 import store from "./store/store";
 
 function App() {

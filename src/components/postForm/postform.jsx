@@ -1,12 +1,9 @@
 import React from "react";
-import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE } from "../index";
-import { Select } from "../index";
-import authService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import appwriteService from "../appwrite/config";
+
+
 
 function Postform({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =

@@ -1,32 +1,35 @@
-import Header from "./Header/header";
+import header from "../components/Header/header"
+import logooutbtn from "./Header/logooutbtn"
 import Footer from "./Footer/footer";
+import Postform from "./postForm/postform";
 import RTE from "./RTE";
 import Logo from "./logo";
 import container from "./container/container"
-import logooutbtn from "./Header/logooutbtn"
 import Login from "./login";
-import button from "../components/button"
-import Select from "../components/select"
+import select from "./select"
 import Input from "../components/input"
-import RTE from "./RTE"
+import Button from "./button";
+import postCard from"./postCard";
+import Protection from "./Authlayout"
+import SigninUp from "./signinUp"
+
 
 
 
 
 export {
-    Header,
+    header,
     Footer,
     Logo,
     container,
     logooutbtn,
+    Postform,
     RTE,
+    postCard,
     Input,
-    button,
+    Button,
     Login,
-    Select,
-
-    
-
-
-    
+    select,
+    SigninUp,
+    Protection,
 }
