@@ -4,12 +4,12 @@ import { Client, ID, Databases, Storage, Query } from "appwrite";
 export class Service {
   client = new Client();
   database;
-  Storage;
+  bucket;
 
   constructor() {
     this.client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProject);
     this.database = new Databases(this.client);
-    this.Storage = new Storage(this.client);
+    this.bucket = new Storage(this.client);
   }
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
@@ -45,7 +45,7 @@ export class Service {
         }
       );
     } catch (error) {
-      console.log("Appwrite serive :: uploadPost :: error", error);
+      console.log("Appwrite serive :: uploadPost :: error");
     }
   }
 
@@ -55,7 +55,7 @@ export class Service {
         conf.appwriteDataBaseId,
         conf.appwriteCollectionId,
         slug
-      );
+      )
       return true;
     } catch (error) {
       console.log("Appwrite serive :: deletePost :: error", error);
@@ -70,8 +70,9 @@ export class Service {
         conf.appwriteCollectionId,
         slug
       );
-    } catch (error) {
-      console.log("Appwrite serive :: getPost :: error", error);
+    } 
+    catch (error) {
+      // console.log("Appwrite serive :: getPost :: error", error);
       return false;
     }
   }
@@ -94,7 +95,7 @@ export class Service {
 
   async uploadFile(file) {
     try {
-      return await this.Storage.createFile(
+      return await this.bucket.createFile(
         conf.appwriteBucketId,
         ID.unique(),
         file
@@ -107,7 +108,7 @@ export class Service {
 
   async deleteFile(fileId) {
     try {
-      await this.Storage.deleteFile(conf.appwriteBucketId, fileId);
+      await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
       console.log("Appwrite serive :: deleteFile :: error", error);
@@ -116,7 +117,7 @@ export class Service {
   }
 
   getFilePreview(fileId) {
-    return this.Storage.getFilePreview(conf.appwriteBucketId, fileId);
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
   }
 }
 

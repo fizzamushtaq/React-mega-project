@@ -3,15 +3,19 @@ import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
   client = new Client();
-  account;
+  Account;
 
   constructor() {
     this.client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProject);
-    this.account = new Account(this.client);
+    this.Account = new Account(this.client);
   }
+
+
+ 
+
   async CreateAccount({ email, password, name }) {
     try {
-      const UserAccount = await this.account.create(
+      const UserAccount = await this.Account.create(
         ID.unique(),
         email,
         password,
@@ -27,10 +31,9 @@ export class AuthService {
       throw error;
     }
   }
-
   async login({ email, password }) {
     try {
-      return await this.account.createEmailSession(email, password);
+      return await this.Account.createEmailSession(email, password);
     } catch (error) {
       throw error;
     }
@@ -38,15 +41,16 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      return await this.account.get();
+      return await this.Account.get();
     } catch (error) {
-      console.log("Appwrite service :: getCurrentUser :: error", error);
+      // console.log("Appwrite service :: getCurrentUser :: error", error);
+      return null;
     }
-    return null;
+   
   }
   async logout() {
     try {
-      return await this.account.deleteSessions();
+      return await this.Account.deleteSessions();
     } catch (error) {
       console.log("Appwrite service :: logout :: error", error);
     }
