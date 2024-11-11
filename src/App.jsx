@@ -5,15 +5,15 @@ import authService from "./appwrite/Auth";
 import { login, logout } from "./store/store";
 import { Footer } from "./components";
 import Header from "./components/Header/header";
-import store from "./store/store";
+import { Outlet } from 'react-router-dom'
+
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    authService
-      .getCurrentUser()
+    authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
           dispatch(login({ userData }));
@@ -22,13 +22,14 @@ function App() {
         }
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [])
+
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
       <div className='w-full block'>
         <Header />
         <main>
-        TODO {/*  <Outlet /> */}
+        TODO:  <Outlet />
         </main>
         <Footer />
       </div>
@@ -37,3 +38,6 @@ function App() {
 }
 
 export default App;
+
+
+
