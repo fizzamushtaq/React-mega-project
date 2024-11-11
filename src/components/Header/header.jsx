@@ -1,5 +1,7 @@
 import React from "react";
-import { container, logooutbtn, Logo } from "../index";
+import { Logo } from "../index";
+import Container from "../container/container";
+import Logooutbtn from "./logooutbtn";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,27 +17,32 @@ function Header() {
     {
       name: "Login",
       slug: "/login",
-      active: !authStatus,
+      active: authStatus,
     },
     {
       name: "Signup",
       slug: "/signup",
-      active: !authStatus,
+      active: authStatus,
     },
     {
       name: "All Posts",
       slug: "/all-posts",
-      active: authStatus,
+      active: !authStatus,
     },
     {
       name: "Add Post",
       slug: "/add-post",
-      active: authStatus,
+      active: !authStatus,
+    },
+    {
+      name: "LogOut",
+      slug: "/log-out",
+      active: !authStatus,
     },
   ];
   return (
     <header className="py-3 shadow bg-gray-500">
-      <container>
+      <Container>
         <nav className="flex">
           <div className="mr-4">
             <Link to="/">
@@ -57,12 +64,12 @@ function Header() {
             )}
             {authStatus && (
               <li>
-                <logooutbtn />
+                <Logooutbtn />
               </li>
             )}
           </ul>
         </nav>
-      </container>
+      </Container>
     </header>
   );
 }

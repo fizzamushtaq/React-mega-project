@@ -8,10 +8,11 @@ import container from "./container/container"
 import Login from "./login";
 import select from "./select"
 import Input from "../components/input"
-import Button from "./button";
-import postCard from"./postCard";
-import Protection from "./Authlayout"
+import Button from "./Button.jsx";
+import  PostCard from "./PostCard.jsx"
+import Authlayout from "./Authlayout.jsx"
 import SigninUp from "./signinUp"
+
 
 
 
@@ -25,11 +26,11 @@ export {
     logooutbtn,
     Postform,
     RTE,
-    postCard,
+    PostCard,
     Input,
     Button,
     Login,
     select,
     SigninUp,
-    Protection,
+    Authlayout,
 }

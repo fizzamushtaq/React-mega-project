@@ -2,7 +2,7 @@ import React from "react";
 import appwriteService from "../appwrite/config";
 import { Link } from "react-router-dom";
 
-function Post({ $id, tittle, featuredImage }) {
+function PostCard({ $id, tittle, featuredImage }) {
   return (
   <Link to={`/post/${$id}`}>
   <div className='w-full bg-gray-100 rounded-xl p-4'>
@@ -18,4 +18,4 @@ function Post({ $id, tittle, featuredImage }) {
   )
 }
 
-export default Post;
+export default PostCard;
