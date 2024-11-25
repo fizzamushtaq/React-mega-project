@@ -24,6 +24,13 @@ function App() {
       .finally(() => setLoading(false))
   }, [])
 
+  console.log("App write url is ", import.meta.env.VITE_APP_APPWRITE_URL);
+  console.log("App write project is ", import.meta.env.VITE_APP_APPWRITE_PROJECT_ID);
+  console.log("App write database is ", import.meta.env.VITE_APP_APPWRITE_DATABASE_ID);
+  console.log("App write collection is ", import.meta.env.VITE_APP_APPWRITE_COLLECTION_ID);
+  console.log("App write bucket is ", import.meta.env.VITE_APP_APPWRITE_BUCKET_ID);
+
+
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
       <div className='w-full block'>
