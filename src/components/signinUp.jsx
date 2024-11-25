@@ -2,10 +2,10 @@ import { useState } from "react";
 import React from 'react';
 import { Button, Logo, Input } from "../components/index";
 import { useDispatch } from "react-redux";
-import authService from "../appwrite/Auth";
+import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../store/store";
+import { login } from "../store/authSlice";
 
 function SigninUp() {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ function SigninUp() {
               {...register("name", { required: "Full Name is required" })}
             />
             {errors.name && <p className="text-red-600">{errors.name.message}</p>}
-            
+
             <Input
               label="Email: "
               placeholder="Enter your email"
@@ -71,7 +71,7 @@ function SigninUp() {
               })}
             />
             {errors.email && <p className="text-red-600">{errors.email.message}</p>}
-            
+
             <Input
               label="Password: "
               type="password"
@@ -79,7 +79,7 @@ function SigninUp() {
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && <p className="text-red-600">{errors.password.message}</p>}
-            
+
             <Button type="submit" className="w-full">
               Create Account
             </Button>
