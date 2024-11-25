@@ -3,34 +3,37 @@ import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
   client = new Client();
-  Account;
+  account;
 
   constructor() {
-    this.client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProject);
-    this.Account = new Account(this.client);
+    this.client
+      .setEndpoint(conf.appwriteUrl)
+      .setProject(conf.appwriteProjectId);
+    this.account = new Account(this.client);
   }
 
-  async CreateAccount({ email, password, name }) {
+  async createAccount({ email, password, name }) {
     try {
-      const UserAccount = await this.Account.create(
+      const userAccount = await this.account.create(
         ID.unique(),
         email,
         password,
         name
       );
-      if (UserAccount) {
-        //call another method
+      if (userAccount) {
+        // call another method
         return this.login({ email, password });
       } else {
-        return UserAccount;
+        return userAccount;
       }
     } catch (error) {
       throw error;
     }
   }
+
   async login({ email, password }) {
     try {
-      return await this.Account.createEmailSession(email, password);
+      return await this.account.createEmailSession(email, password);
     } catch (error) {
       throw error;
     }
@@ -38,18 +41,19 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      return await this.Account.get();
+      return await this.account.get();
     } catch (error) {
       console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
 
     return null;
   }
+
   async logout() {
     try {
-      return await this.Account.deleteSessions();
+      await this.account.deleteSessions();
     } catch (error) {
-      console.log("Appwrite service :: logout :: error", error);
+      console.log("Appwrite serive :: logout :: error", error);
     }
   }
 }
