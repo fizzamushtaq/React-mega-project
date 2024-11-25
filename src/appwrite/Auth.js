@@ -43,10 +43,10 @@ export class AuthService {
     try {
       return await this.Account.get();
     } catch (error) {
-      // console.log("Appwrite service :: getCurrentUser :: error", error);
-      return null;
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
-   
+
+    return null;
   }
   async logout() {
     try {
