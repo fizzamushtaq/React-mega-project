@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { useDispatch } from "react-redux";
-import authService from "./appwrite/Auth";
-import { login, logout } from "./store/store";
+import authService from "./appwrite/auth";
+import { login, logout } from "./store/authSlice";
 import { Footer } from "./components";
 import Header from "./components/Header/header";
 import { Outlet } from 'react-router-dom'
@@ -29,7 +29,7 @@ function App() {
       <div className='w-full block'>
         <Header />
         <main>
-        TODO:  <Outlet />
+          TODO:  <Outlet />
         </main>
         <Footer />
       </div>

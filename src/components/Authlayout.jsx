@@ -1,32 +1,21 @@
-import React from 'react'
-import { useEffect , useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-export default function Protection({childern, authentication = true}) {
-
+export default function Protection({ children, authentication = true }) {
     const navigate = useNavigate()
-    const [loader, setLoader ] = useState(true)
-    const authStatus = useSelector(state => state.authStatus)
+    const [loader, setLoader] = useState(true)
+    const authStatus = useSelector(state => state.auth.status)  // Assuming auth status is stored here
 
-    useEffect(()=> {
-        // this condition use to navigate the user to login when authentication become true : complex method/ logic 
-        if (authentication && authStatus !== authentication) {
+    useEffect(() => {
+        // This condition navigates the user based on the authentication status
+        if (authentication && !authStatus) {
             navigate("/login")
-        } else if (!authentication && authStatus !== authentication) {
+        } else if (!authentication && authStatus) {
             navigate("/")
         }
-    }, [ navigate, authentication, authStatus])
-      
-    // easy methid for understand the logic:
+        setLoader(false)
+    }, [navigate, authentication, authStatus])
 
-    // if (authStatus = true) {
-    //     navigate("/")
-    // } else if (authStatus === false) {
-    //     navigate("/login")
-        
-    // }
-    return loader ? <h1>loading...</h1> : <>{childern}</>
+    return loader ? <h1>Loading...</h1> : <>{children}</>;
 }
-
-
