@@ -2,8 +2,8 @@ import React from 'react'
 import { useEffect , useState } from 'react'
 import Container from '../components/container/container'
 import { Postform } from '../components'
-import { Service } from "../appwrite/config";
 import { useNavigate, useParams } from 'react-router-dom';
+import appwriteService from "../appwrite/config";
 // uncomplete
 function Editpost() {
     const [post,  setsPost] = useState ([])
@@ -11,7 +11,7 @@ function Editpost() {
     const navigate = useNavigate()
     useEffect(()=> {
         if (slug) {
-            Service.getPost(slug).then((post)=>{
+            appwriteService.getPost(slug).then((post)=>{
                 if (post) {
                   setsPost(post)  
                 }

@@ -72,7 +72,7 @@ export class Service {
       );
     } 
     catch (error) {
-      // console.log("Appwrite serive :: getPost :: error", error);
+      console.log("Appwrite serive :: getPost :: error", error);
       return false;
     }
   }

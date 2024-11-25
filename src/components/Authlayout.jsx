@@ -7,7 +7,7 @@ export default function Protection({childern, authentication = true}) {
 
     const navigate = useNavigate()
     const [loader, setLoader ] = useState(true)
-    const authStatus = useSelector(state => state.authStatus)
+    const authStatus = useSelector(state => state.auth.status)
 
     useEffect(()=> {
         // this condition use to navigate the user to login when authentication become true : complex method/ logic 
@@ -16,6 +16,7 @@ export default function Protection({childern, authentication = true}) {
         } else if (!authentication && authStatus !== authentication) {
             navigate("/")
         }
+        setLoader(false)
     }, [ navigate, authentication, authStatus])
       
     // easy methid for understand the logic:
