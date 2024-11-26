@@ -48,6 +48,8 @@ const router = createBrowserRouter([
         path: "/signup",
         element: (
           <Authlayout authentication={false}>
+            this is signup page
+            {/* issue here.... */}
             <signup />
           </Authlayout>
         )
@@ -86,7 +88,8 @@ const router = createBrowserRouter([
     ],
   },
 ])
-ReactDOM.createRoot(document.getElementById('root')).render(
+
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
