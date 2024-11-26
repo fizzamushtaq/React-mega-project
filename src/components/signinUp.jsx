@@ -16,11 +16,11 @@ function SigninUp() {
   const create = async (data) => {
     setError("");
     try {
-      const userData = await authService.createAccount(data); // fixed method name
+      const userData = await authService.CreateAccount(data); // fixed method name
       if (userData) {
-        const currentUser = await authService.getCurrentUser(); // renamed variable
+        const userData = await authService.getCurrentUser(); // renamed variable
         if (currentUser) {
-          dispatch(login(currentUser));
+          dispatch(login(userData));
           navigate("/");
         }
       }

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login as authLogin } from "../store/authSlice";
-import Input from "../components/input"
+import { login as authLogin } from "../store/store";
+import Input from "../components/input";
+import Button from "./Button";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
@@ -11,7 +12,10 @@ import Button from "./Button";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState: { errors } } = useForm(); // added formState for error handling
+  const {
+    register,
+    handleSubmit,
+  } = useForm(); // added formState for error handling
   const [error, setError] = useState("");
 
   const login = async (data) => {
@@ -65,7 +69,9 @@ function Login() {
                 },
               })}
             />
-            {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+            {error.email && (
+              <p className="text-red-600">{errors.email.message}</p>
+            )}
             <Input
               label="Password: "
               type="password"
@@ -74,7 +80,9 @@ function Login() {
                 required: "Password is required",
               })}
             />
-            {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+            {error.password && (
+              <p className="text-red-600">{errors.password.message}</p>
+            )}
             <Button type="submit" className="w-full">
               Sign in
             </Button>
