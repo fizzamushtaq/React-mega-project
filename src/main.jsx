@@ -10,8 +10,6 @@ import { Provider } from 'react-redux'
 import store from './store/store'
 import Authlayout from "./components/Authlayout"
 
-import ReactDOM from 'react-dom/client'
-
 import signup from "./pages/signup"
 import Allpost from "./pages/Allpost"
 import Addpost from "./pages/Addpost"
