@@ -2,33 +2,33 @@ import { useState } from "react";
 import React from 'react';
 import { Button, Logo, Input } from "../components/index";
 import { useDispatch } from "react-redux";
-import authService from "../appwrite/auth";
+import authService from "../appwrite/Auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 
 function SigninUp() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { register, handleSubmit, formState: { errors } } = useForm(); // added formState for error handling
-  const [error, setError] = useState("");
-
-  const create = async (data) => {
-    setError("");
-    try {
-      const userData = await authService.CreateAccount(data); // fixed method name
-      if (userData) {
-        const userData = await authService.getCurrentUser(); // renamed variable
-        if (currentUser) {
-          dispatch(login(userData));
-          navigate("/");
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { register, handleSubmit } = useForm(); // Handle form validation
+    const [error, setError] = useState("");
+  
+    const create = async (data) => {
+      setError(""); // Clear previous errors
+      try {
+        const userData = await authService.createAccount(data); // Create account
+        if (userData) {
+          const currentUser = await authService.getCurrentUser(); // Fetch current user
+          dispatch(login(currentUser)); // Save user data to Redux store
+          navigate("/"); // Redirect to home page
         }
+      } catch (error) {
+        console.error("Error creating account:", error); // Log detailed error
+        setError(error.message || "Failed to create account. Please try again."); // Set user-friendly error
       }
-    } catch (error) {
-      setError(error.message); // display error message
-    }
-  };
-
+    };
+  
+  
   return (
     <div className="flex items-center justify-center">
       <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
@@ -56,7 +56,7 @@ function SigninUp() {
               placeholder="Enter your full name"
               {...register("name", { required: "Full Name is required" })}
             />
-            {errors.name && <p className="text-red-600">{errors.name.message}</p>}
+            {error.name && <p className="text-red-600">{errors.name.message}</p>}
 
             <Input
               label="Email: "
@@ -70,7 +70,7 @@ function SigninUp() {
                 },
               })}
             />
-            {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+            {error.email && <p className="text-red-600">{errors.email.message}</p>}
 
             <Input
               label="Password: "
@@ -78,7 +78,7 @@ function SigninUp() {
               placeholder="Enter your password"
               {...register("password", { required: "Password is required" })}
             />
-            {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+            {error.password && <p className="text-red-600">{errors.password.message}</p>}
 
             <Button type="submit" className="w-full">
               Create Account

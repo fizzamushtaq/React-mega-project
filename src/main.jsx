@@ -1,5 +1,4 @@
-import { StrictMode } from 'react'
-import ReactDOM from 'react-dom/client'
+
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
@@ -9,14 +8,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store/store'
 import Authlayout from "./components/Authlayout"
-
-import signup from "./pages/signup"
 import Allpost from "./pages/Allpost"
 import Addpost from "./pages/Addpost"
 import Editpost from './pages/editpost'
 import Post from "./pages/Post"
 import Login from './pages/Login'
 import LoginPage from './pages/Login'
+import Signup from './pages/signup'
 
 
 // const enchancers = compose
@@ -49,8 +47,7 @@ const router = createBrowserRouter([
         element: (
           <Authlayout authentication={false}>
             this is signup page
-            {/* issue here.... */}
-            <signup />
+            <Signup />
           </Authlayout>
         )
       },
