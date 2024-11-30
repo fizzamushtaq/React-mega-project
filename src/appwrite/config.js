@@ -10,6 +10,8 @@ export class Service {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
+      console.log(this.client);
+      
     this.databases = new Databases(this.client);
     this.bucket = new Storage(this.client);
   }

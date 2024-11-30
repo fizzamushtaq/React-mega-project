@@ -14,17 +14,16 @@ function SigninUp() {
     const [error, setError] = useState("");
   
     const create = async (data) => {
-      setError(""); // Clear previous errors
+      setError("") // Clear previous errors
       try {
         const userData = await authService.createAccount(data); // Create account
         if (userData) {
-          const currentUser = await authService.getCurrentUser(); // Fetch current user
-          dispatch(login(currentUser)); // Save user data to Redux store
+          const userData = await authService.getCurrentUser(); // Fetch current user
+          dispatch(login(userData)); // Save user data to Redux store
           navigate("/"); // Redirect to home page
         }
       } catch (error) {
-        console.error("Error creating account:", error); // Log detailed error
-        setError(error.message || "Failed to create account. Please try again."); // Set user-friendly error
+        setError(error.message); // Set user-friendly error
       }
     };
   
