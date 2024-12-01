@@ -5,8 +5,8 @@ import Postform from "./postForm/postform";
 import RTE from "./RTE";
 import Logo from "./logo";
 import container from "./container/container"
-import Login from "./login";
-import select from "./select"
+import Login from "./login"
+import Select from "./select.jsx";
 import Input from "../components/input"
 import Button from "./Button.jsx";
 import  PostCard from "./PostCard.jsx"
@@ -30,7 +30,7 @@ export {
     Input,
     Button,
     Login,
-    select,
+    Select,
     SigninUp,
     Authlayout,
 }

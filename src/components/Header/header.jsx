@@ -34,11 +34,7 @@ function Header() {
       slug: "/add-post",
       active: authStatus,
     },
-    {
-      name: "LogOut",
-      slug: "/log-out",
-      active: authStatus,
-    },
+   
   ];
   return (
     <header className="py-3 shadow bg-gray-500">

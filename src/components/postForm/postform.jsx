@@ -4,7 +4,7 @@ import { Button, Input, RTE } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import Select from "../select";
 
 export default function PostForm({ post }) {
  const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -108,12 +108,12 @@ export default function PostForm({ post }) {
       />
      </div>
     )}
-    <Select
+    <Select 
      options={["active", "inactive"]}
      label="Status"
      className="mb-4"
      {...register("status", { required: true })}
-    />
+     />
     <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
      {post ? "Update" : "Submit"}
     </Button>

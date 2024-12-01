@@ -9,9 +9,10 @@ import Container from '../components/container/container';
 
 
 function Post() {
-    const [post,  setsPost] = useState ([null])
-    const {slug} = useParams()
+    const [post, setPost] = useState(null);
+    const { slug } = useParams();
     const navigate = useNavigate();
+
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
@@ -19,20 +20,12 @@ function Post() {
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
-                if (post) setsPost(post);
+                if (post) setPost(post);
                 else navigate("/");
             });
         } else navigate("/");
     }, [slug, navigate]);
 
-    const deletePost = () => {
-        appwriteService.deletePost(post.$id).then((status) => {
-            if (status) {
-                appwriteService.deleteFile(post.featuredImage);
-                navigate("/");
-            }
-        });
-    };
 
     return post ? (
         <div className="py-8">
