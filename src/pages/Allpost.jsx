@@ -2,9 +2,9 @@ import React , {useEffect, useState} from 'react'
 import appwriteService from '../appwrite/config'
 import Container from '../components/container/container'
 import  PostCard from "../components/PostCard"
-function Allpost() {
+function AllPosts() {
     const [posts, setPosts] = useState([])
-    useEffect(() => { }, [])
+    useEffect(() => {}, [])
     appwriteService.getPosts([]).then((posts) => {
         if (posts) {
             setPosts(posts.documents)
@@ -12,7 +12,7 @@ function Allpost() {
     })
     return (
         <div className='w-full py-8'>
-            <Container className='flex flex-wrap'>
+            <Container>
             <div className='flex flex-wrap'>
                 {posts.map((post) => (
                     <div key={post.$id} className='p-2 w-1/4'>
@@ -25,4 +25,4 @@ function Allpost() {
     )
 }
 
-export default Allpost
+export default AllPosts;
